@@ -2,21 +2,92 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="140dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="12dp"
+    android:layout_marginTop="5dp"
+    app:cardCornerRadius="6dp"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:minHeight="120dp">
 
-        <TextView
-            android:id="@+id/item_name"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Biriyani"
-            android:layout_margin="5dp"
-            android:textSize="17sp"
-            android:textStyle="normal"
-            android:textColor="@color/textForegroundBlack"/>
+            android:maxHeight="200dp"
+            android:src="@drawable/rice"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/overlayBackground"
+            android:layout_alignBottom="@id/item_image"
+            >
+
+            <TextView
+                android:id="@+id/item_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Biriyani"
+                android:textColor="@color/textForegroundWhite"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                />
+
+
+            <TextView
+                android:id="@+id/item_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs.135.00"
+                android:textColor="@color/textForegroundWhite"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                />
+
+
+            <ImageView
+                android:id="@+id/star"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_star_black_24dp"
+                android:layout_toLeftOf="@id/rating_text"
+                android:padding="2dp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/rating_text"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:text="4.0"
+                android:textColor="@color/textForegroundWhite"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                />
+
+            <com.soorya.foodie.view.AddRemoveButton
+                android:id="@+id/add_remove_button"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

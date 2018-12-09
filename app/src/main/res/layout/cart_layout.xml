@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_top"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Your cart"
+                android:textColor="@color/textForegroundWhite"
+                android:textSize="19sp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_top">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/order_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order details"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                />
+
+            <ListView
+                android:id="@+id/order_detail_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_head">
+
+            </ListView>
+
+            <View
+                android:id="@+id/border_view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/borderGray"
+                android:layout_below="@id/order_detail_list"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+
+            <TextView
+                android:id="@+id/billing_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Billing details"
+                android:textSize="15dp"
+                android:layout_below="@id/border_view"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/item_total_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item total "
+                android:layout_below="@id/billing_head"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
+                android:id="@+id/item_total_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250.00"
+                android:layout_below="@id/billing_head"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:id="@+id/extra_charges_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Extra charges "
+                android:layout_below="@id/item_total_lay"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
+                android:id="@+id/extra_charges_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="28.00"
+                android:layout_below="@id/item_total_lay"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:id="@+id/deliver_fee_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery charges"
+                android:layout_below="@id/extra_charges_lay"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
+                android:id="@+id/delivery_fee_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20.00"
+                android:layout_below="@id/extra_charges_lay"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                />
+
+            <View
+                android:id="@+id/total_seperator_view"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/borderGray"
+                android:layout_below="@id/delivery_fee_text"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+
+            <TextView
+                android:id="@+id/total_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total charges"
+                android:layout_below="@id/total_seperator_view"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/textForegroundBlack"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/total_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="320.00"
+                android:layout_below="@id/total_seperator_view"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/textForegroundBlack"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:id="@+id/total_seperator_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/borderGray"
+                android:layout_below="@id/total_text"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/promo_code_text"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/total_seperator_view_2"
+                android:hint="Have a promo code?"
+                android:background="@drawable/promocode_background"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/apply_text"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignEnd="@id/promo_code_text"
+                android:layout_below="@id/total_seperator_view_2"
+                android:text="Apply"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/apply_text"
+                android:text="Promo applied successfully you saved Rs.300 this order"
+                android:layout_alignStart="@id/promo_code_text"
+                android:layout_alignEnd="@id/promo_code_text"
+                android:textColor="@color/green"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>
