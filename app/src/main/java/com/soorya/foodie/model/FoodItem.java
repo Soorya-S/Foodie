@@ -7,7 +7,7 @@ public class FoodItem {
 
     @SerializedName("average_rating")
     @Expose
-    private float averageRating;
+    private Float averageRating;
 
     @SerializedName("image_url")
     @Expose
@@ -19,10 +19,10 @@ public class FoodItem {
 
     @SerializedName("item_price")
     @Expose
-    private float itemPrice;
+    private Float itemPrice;
 
 
-    public void FoodItem(int averageRating, String imageUrl, String itemName, float itemPrice)
+    public void FoodItem(Float averageRating, String imageUrl, String itemName, Float itemPrice)
     {
         this.averageRating = averageRating;
         this.imageUrl = imageUrl;
@@ -30,11 +30,11 @@ public class FoodItem {
         this.itemPrice = itemPrice;
     }
 
-    public float getAverageRating() {
+    public Float getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(int averageRating) {
+    public void setAverageRating(Float averageRating) {
         this.averageRating = averageRating;
     }
 
@@ -54,7 +54,7 @@ public class FoodItem {
         this.itemName = itemName;
     }
 
-    public float getItemPrice() {
+    public Float getItemPrice() {
         return itemPrice;
     }
 

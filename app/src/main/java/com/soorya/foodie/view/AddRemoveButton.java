@@ -7,6 +7,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.soorya.foodie.R;
+import com.soorya.foodie.interfaces.AddRemoveButtonClickListener;
+import com.soorya.foodie.interfaces.CartValueUpdater;
 
 public class AddRemoveButton extends RelativeLayout {
 
@@ -14,6 +16,7 @@ public class AddRemoveButton extends RelativeLayout {
     TextView countTextView;
     View addButton;
     View removeButton;
+    public AddRemoveButtonClickListener listener;
 
     private int minValue = 0;
     private int maxValue = 0;
@@ -53,14 +56,26 @@ public class AddRemoveButton extends RelativeLayout {
     private void incrementValue() {
         int currentVal = Integer.valueOf(countTextView.getText().toString());
         if(currentVal < maxValue) {
-            countTextView.setText(String.valueOf(currentVal + 1));
+            currentVal++;
+            countTextView.setText(String.valueOf(currentVal));
+
+            if (listener!=null)
+            {
+                listener.onAddRemoveButtonClicked(currentVal);
+            }
         }
     }
 
     private void decrementValue() {
         int currentVal = Integer.valueOf(countTextView.getText().toString());
         if(currentVal > minValue) {
-            countTextView.setText(String.valueOf(currentVal - 1));
+            currentVal--;
+            countTextView.setText(String.valueOf(currentVal));
+
+            if (listener!=null)
+            {
+                listener.onAddRemoveButtonClicked(currentVal);
+            }
         }
     }
 
@@ -74,6 +89,11 @@ public class AddRemoveButton extends RelativeLayout {
         }
     }
 
+    public void setItemCount(int count)
+    {
+        countTextView.setText(String.valueOf(count));
+    }
+
     public void setMinValue(int val)
     {
         if (val >= Integer.MIN_VALUE)
@@ -84,5 +104,10 @@ public class AddRemoveButton extends RelativeLayout {
     {
         if (val <= Integer.MAX_VALUE)
             maxValue = val;
+    }
+
+    public void setOnAddRemoveButtonClickListener(AddRemoveButtonClickListener addRemoveButtonClickListener)
+    {
+        this.listener = addRemoveButtonClickListener;
     }
 }

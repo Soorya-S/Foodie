@@ -32,6 +32,7 @@
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar_top">
@@ -164,7 +165,7 @@
                 android:layout_below="@id/total_seperator_view"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
-                android:textColor="@color/textForegroundBlack"
+                android:textColor="@color/textMateBlack"
                 android:textStyle="bold"
                 />
 
@@ -177,7 +178,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/textForegroundBlack"
+                android:textColor="@color/textMateBlack"
                 android:textStyle="bold"
                 />
 
@@ -201,7 +202,9 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"/>
+                android:paddingLeft="10dp"
+                android:textAllCaps="true"
+                />
 
             <TextView
                 android:id="@+id/apply_text"
@@ -214,21 +217,91 @@
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:layout_marginRight="10dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:clickable="true"
                 />
 
             <TextView
+                android:id="@+id/promo_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/apply_text"
-                android:text="Promo applied successfully you saved Rs.300 this order"
+                android:text="Promo applied successfully you saved Rs.300 on this order"
                 android:layout_alignStart="@id/promo_code_text"
                 android:layout_alignEnd="@id/promo_code_text"
                 android:textColor="@color/green"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"/>
 
+            <TextView
+                android:id="@+id/promo_discount_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Promo discount"
+                android:layout_below="@id/promo_desc"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/textForegroundBlack"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/promo_discount_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- 89.00"
+                android:layout_below="@id/promo_desc"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/green"
+                android:textStyle="bold"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                />
+
+
+            <TextView
+                android:id="@+id/final_total_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total amount to be paid"
+                android:layout_below="@id/promo_discount_text"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/textMateBlack"
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <TextView
+                android:id="@+id/final_total_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="261.00"
+                android:layout_below="@id/promo_discount_text"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/textMateBlack"
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:layout_marginBottom="60dp"
+                />
         </RelativeLayout>
 
     </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:text="Proceed to pay"
+        android:textAllCaps="false"
+        android:textSize="21sp"
+        android:background="@drawable/pay_button_backgroung"
+        android:textColor="@color/textForegroundWhite"/>
+
 </RelativeLayout>

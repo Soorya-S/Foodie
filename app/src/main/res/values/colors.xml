@@ -9,5 +9,6 @@
     <color name="borderGray">#bcbcbc</color>
     <color name="borderGrayLight">#e0e0e0</color>
     <color name="green">#388e3c</color>
-
+    <color name="red">#d50000</color>
+    <color name="textMateBlack">#424242</color>
 </resources>
