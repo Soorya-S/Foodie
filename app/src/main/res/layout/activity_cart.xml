@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <RelativeLayout
         android:id="@+id/toolbar_top"
-        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentStart="true"
@@ -18,18 +17,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:clickable="true"
+                android:padding="5dp"
+                android:background="?android:attr/selectableItemBackground"
+                />
+
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Your cartItem"
+                android:text="Your cart"
                 android:textColor="@color/textForegroundWhite"
                 android:textSize="19sp" />
 
         </RelativeLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -57,7 +66,11 @@
                 android:id="@+id/order_detail_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/order_head">
+                android:layout_below="@id/order_head"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:nestedScrollingEnabled="false"
+                >
 
             </android.support.v7.widget.RecyclerView>
 
@@ -97,7 +110,7 @@
                 android:id="@+id/item_total_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="250.00"
+                android:text="0.00"
                 android:layout_below="@id/billing_head"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
@@ -108,7 +121,7 @@
                 android:id="@+id/extra_charges_lay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Extra charges "
+                android:text="Extra charges (include tax)"
                 android:layout_below="@id/item_total_lay"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
@@ -118,7 +131,7 @@
                 android:id="@+id/extra_charges_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="28.00"
+                android:text="0.00"
                 android:layout_below="@id/item_total_lay"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
@@ -139,7 +152,7 @@
                 android:id="@+id/delivery_fee_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20.00"
+                android:text="0.00"
                 android:layout_below="@id/extra_charges_lay"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
@@ -173,7 +186,7 @@
                 android:id="@+id/total_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="320.00"
+                android:text="0.00"
                 android:layout_below="@id/total_seperator_view"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
@@ -203,7 +216,6 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
-                android:textAllCaps="true"
                 />
 
             <TextView
@@ -227,7 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/apply_text"
-                android:text="Promo applied successfully you saved Rs.300 on this order"
+                android:text=""
                 android:layout_alignStart="@id/promo_code_text"
                 android:layout_alignEnd="@id/promo_code_text"
                 android:textColor="@color/green"
@@ -246,12 +258,11 @@
                 android:textColor="@color/textForegroundBlack"
                 android:textStyle="bold"/>
 
-
             <TextView
                 android:id="@+id/promo_discount_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="- 89.00"
+                android:text="0.00"
                 android:layout_below="@id/promo_desc"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
@@ -261,38 +272,41 @@
                 android:layout_alignParentRight="true"
                 />
 
-
-            <TextView
-                android:id="@+id/final_total_lable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total amount to be paid"
-                android:layout_below="@id/promo_discount_text"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp"
-                android:textColor="@color/textMateBlack"
-                android:textStyle="bold"
-                android:textSize="19sp"
-                android:layout_marginBottom="20dp"
-                />
-
-            <TextView
-                android:id="@+id/final_total_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="261.00"
-                android:layout_below="@id/promo_discount_text"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="50dp"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/textMateBlack"
-                android:textStyle="bold"
-                android:textSize="19sp"
-                android:layout_marginBottom="60dp"
-                />
         </RelativeLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@id/pay_button"
+        android:background="@drawable/promocode_background">
+
+        <TextView
+            android:id="@+id/final_total_lable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total amount to be paid"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/final_total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="261.00"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/pay_button"
@@ -305,4 +319,23 @@
         android:background="@drawable/pay_button_backgroung"
         android:textColor="@color/textForegroundWhite"/>
 
+    <RelativeLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_below="@id/toolbar_top"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="21sp"
+            android:text="Cart is empty!"/>
+
+
+    </RelativeLayout>
 </RelativeLayout>

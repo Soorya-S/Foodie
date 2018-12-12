@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.soorya.foodie.R;
+import com.soorya.foodie.activities.MainActivity;
 import com.soorya.foodie.fragments.FoodDetailFragment;
 import com.soorya.foodie.interfaces.AddRemoveButtonClickListener;
 import com.soorya.foodie.interfaces.CartValueUpdater;
@@ -35,7 +36,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
 
     private Context context;
     private List<FoodItem> foodList;
-    private CartValueUpdater cartValueUpdater;
     private CartDatabase cartDatabase;
     private HashMap<String,CartItem> cartItems = new HashMap<>();
     private Boolean isSync = false;
@@ -44,21 +44,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
     {
         this.context = contex;
         this.foodList = foodItems;
-        this.cartValueUpdater =(CartValueUpdater) contex;
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                cartDatabase = Room.databaseBuilder(context,CartDatabase.class,"cartdb").build();
-
-                for(CartItem c : cartDatabase.cartDB().getCartDetails())
-                {
-                    cartItems.put(c.getFoodName(),c);
-                }
-                notifyDataSetChanged();
-                syncData();
-            }
-        }).start();
+        initDatabase();
     }
 
     @NonNull
@@ -79,13 +65,23 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
             String foodName = foodList.get(position).getItemName();
             holder.itemName.setText(foodName);
             holder.itemRating.setText(String.valueOf(foodList.get(position).getAverageRating()));
-            holder.itemPrice.setText("Rs."+String.valueOf(foodList.get(position).getItemPrice()));
+            holder.itemPrice.setText("\u20B9 "+String.valueOf(foodList.get(position).getItemPrice()));
             Glide.with(context).load(foodList.get(position).getImageUrl()).thumbnail(0.3f).into(holder.itemImage);
 
             if (cartItems.size()>0 && cartItems.containsKey(foodName))
             {
                 holder.addRemoveButton.setItemCount(cartItems.get(foodName).getCartValue());
             }
+            else
+            {
+                holder.addRemoveButton.setItemCount(0);
+            }
+
+            for(CartItem c : cartItems.values())
+            {
+                Log.d("cartbindData : " ,c.getFoodName() + " ==== " + c.getCartValue());
+            }
+
         }
     }
 
@@ -160,7 +156,12 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
             @Override
             protected Void doInBackground( final Void ... params ) {
                 try {
-                    cartDatabase.cartDB().addCartData(cartItem);
+                    if (cartItem.getCartValue() < 1) {
+                        cartDatabase.cartDB().deleteCartData(cartItem);
+                    }
+                    else {
+                        cartDatabase.cartDB().addCartData(cartItem);
+                    }
                 }
                 catch (Exception e) {
                     cartDatabase.cartDB().updateCartValue(cartItem);
@@ -180,6 +181,14 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
             @Override
             protected void onPostExecute( final Void result ) {
                 notifyItemChanged(pos);
+
+                int size = 0;
+                for(CartItem c : cartItems.values())
+                {
+                    size +=c.getCartValue();
+                }
+
+                ((MainActivity)context).updateCartCount(size);
             }
         }.execute();
     }
@@ -226,6 +235,44 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
                 {
                     Toast.makeText(context,"Some items in your cart is currently unavailable!",Toast.LENGTH_SHORT).show();
                 }
+
+                int size = 0;
+                for(CartItem c : cartItems.values())
+                {
+                    size +=c.getCartValue();
+                }
+
+                ((MainActivity)context).updateCartCount(size);
+            }
+        }.execute();
+    }
+
+
+    /*
+     * Initialize the cart database and get data from cart
+     */
+    @SuppressLint("StaticFieldLeak")
+    public void initDatabase()
+    {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground( final Void ... params ) {
+                cartDatabase = Room.databaseBuilder(context,CartDatabase.class,"cartdb").build();
+                cartItems.clear();
+                for(CartItem c : cartDatabase.cartDB().getCartDetails())
+                {
+                    if (c.getCartValue()>0)
+                        cartItems.put(c.getFoodName(),c);
+
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute( final Void result ) {
+                notifyDataSetChanged();
+                syncData();
+
+
             }
         }.execute();
     }

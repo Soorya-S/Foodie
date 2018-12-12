@@ -26,4 +26,7 @@ public interface CartDataAccessObject {
 
     @Delete
     void deleteCartData(CartItem cartItem);
+
+    @Query("DELETE FROM cart")
+    public void nukeTable();
 }

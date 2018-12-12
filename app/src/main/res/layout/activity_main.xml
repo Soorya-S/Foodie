@@ -42,9 +42,11 @@
                 android:src="@drawable/ic_sort_black_24dp"
                 android:layout_centerVertical="true"
                 android:scaleX="-1"
+
                 />
 
             <TextView
+                android:id="@+id/sort_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sort by"
@@ -53,6 +55,17 @@
                 android:textSize="16sp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
+                />
+            <TextView
+                android:id="@+id/sort_selection_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="none"
+                android:layout_below="@id/sort_icon"
+                android:layout_alignEnd="@id/sort_text"
+                android:gravity="top"
+                android:textSize="12sp"
+                android:layout_marginTop="-3dp"
                 />
         </RelativeLayout>
 
