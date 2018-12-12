@@ -129,7 +129,7 @@
     <View
         android:id="@+id/seperator"
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="0px"
         android:background="@color/borderGray"
         android:layout_above="@id/cart_button"/>
 

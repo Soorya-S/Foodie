@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Your cart"
+                android:text="Your cartItem"
                 android:textColor="@color/textForegroundWhite"
                 android:textSize="19sp" />
 
@@ -53,20 +53,20 @@
                 android:textStyle="bold"
                 />
 
-            <ListView
-                android:id="@+id/order_detail_list"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/order_detail_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/order_head">
 
-            </ListView>
+            </android.support.v7.widget.RecyclerView>
 
             <View
                 android:id="@+id/border_view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/borderGray"
-                android:layout_below="@id/order_detail_list"
+                android:layout_below="@id/order_detail_recyclerview"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
 
@@ -195,7 +195,7 @@
             <EditText
                 android:id="@+id/promo_code_text"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="38dp"
                 android:layout_below="@id/total_seperator_view_2"
                 android:hint="Have a promo code?"
                 android:background="@drawable/promocode_background"
@@ -209,7 +209,7 @@
             <TextView
                 android:id="@+id/apply_text"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="38dp"
                 android:layout_alignEnd="@id/promo_code_text"
                 android:layout_below="@id/total_seperator_view_2"
                 android:text="Apply"
@@ -295,6 +295,7 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/pay_button"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"

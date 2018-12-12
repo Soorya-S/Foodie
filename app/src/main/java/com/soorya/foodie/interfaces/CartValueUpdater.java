@@ -1,5 +1,7 @@
 package com.soorya.foodie.interfaces;
 
+import com.soorya.foodie.model.CartItem;
+
 public interface CartValueUpdater  {
-    void onCartValueChanged(int newVal);
+    void onCartValueChanged(CartItem cartItem);
 }

@@ -1,13 +1,17 @@
 package com.soorya.foodie.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.text.style.IconMarginSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -18,16 +22,13 @@ import com.soorya.foodie.R;
 import com.soorya.foodie.adapter.FoodListAdapter;
 import com.soorya.foodie.interfaces.CartValueUpdater;
 import com.soorya.foodie.interfaces.WebAPIService;
+import com.soorya.foodie.model.CartItem;
 import com.soorya.foodie.model.FoodItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements CartValueUpdater 
     private List<FoodItem> mainFoodList = new ArrayList<>();
     private ProgressBar progressBar;
     private RelativeLayout sortButton;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ImageView cartIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,35 +59,22 @@ public class MainActivity extends AppCompatActivity implements CartValueUpdater 
         foodRecyclerView.setAdapter(foodListAdapter);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
+        cartIcon = findViewById(R.id.cart_icon);
 
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(WebAPIService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        WebAPIService api = retrofit.create(WebAPIService.class);
-
-        final Call<List<FoodItem>> call = api.getFoodData();
-
-        call.enqueue(new Callback<List<FoodItem>>() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onResponse(Call<List<FoodItem>> call, Response<List<FoodItem>> response) {
-
-                foodList.clear();
-                foodList.addAll(response.body());
-                mainFoodList.clear();
-                mainFoodList.addAll(response.body());
-                foodListAdapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.GONE);
+            public void onRefresh() {
+                getData();
             }
+        });
 
+        getData();
+
+        cartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFailure(Call<List<FoodItem>> call, Throwable t) {
-                Log.d("Retrofit err" , t.getMessage());
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CartActivity.class));
             }
         });
 
@@ -114,6 +104,44 @@ public class MainActivity extends AppCompatActivity implements CartValueUpdater 
             @Override
             public void onClick(View v) {
                 popup.show();
+            }
+        });
+    }
+
+    private void getData()
+    {
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(WebAPIService.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        WebAPIService api = retrofit.create(WebAPIService.class);
+
+        final Call<List<FoodItem>> call = api.getFoodData();
+
+        call.enqueue(new Callback<List<FoodItem>>() {
+            @Override
+            public void onResponse(Call<List<FoodItem>> call, Response<List<FoodItem>> response) {
+
+                foodList.clear();
+                foodList.addAll(response.body());
+                mainFoodList.clear();
+                mainFoodList.addAll(response.body());
+                foodListAdapter.notifyDataSetChanged();
+                foodListAdapter.syncData();
+
+                progressBar.setVisibility(View.GONE);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailure(Call<List<FoodItem>> call, Throwable t) {
+                Log.d("Retrofit err" , t.getMessage());
             }
         });
     }
@@ -154,9 +182,7 @@ public class MainActivity extends AppCompatActivity implements CartValueUpdater 
 
 
     @Override
-    public void onCartValueChanged(int newVal) {
-
-        Toast.makeText(MainActivity.this,String.valueOf(newVal),Toast.LENGTH_SHORT).show();
-
+    public void onCartValueChanged(final CartItem newVal) {
+        foodListAdapter.updateCartValues(newVal);
     }
 }

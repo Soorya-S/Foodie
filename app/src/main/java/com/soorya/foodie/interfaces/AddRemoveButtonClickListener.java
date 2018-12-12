@@ -1,5 +1,5 @@
 package com.soorya.foodie.interfaces;
 
 public interface AddRemoveButtonClickListener {
-    void onAddRemoveButtonClicked(int value);
+    void onAddRemoveButtonClicked(final int value);
 }
