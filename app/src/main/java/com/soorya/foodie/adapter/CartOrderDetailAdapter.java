@@ -105,6 +105,9 @@ public class CartOrderDetailAdapter extends RecyclerView.Adapter<CartOrderDetail
     }
 
 
+    /*
+     * this function will add/remove/update a single data entity 'CartItem' to the database
+     */
     @SuppressLint("StaticFieldLeak")
     public void updateCartValues(final CartItem cartItem,final int pos)
     {

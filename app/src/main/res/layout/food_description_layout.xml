@@ -45,7 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/sand"
         android:layout_below="@id/toolbar"
         android:scaleType="centerCrop"
         />

@@ -8,6 +8,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
+/*
+ * interface for Retrofit
+ */
 public interface WebAPIService {
 
     String BASE_URL = "https://android-full-time-task.firebaseio.com/";

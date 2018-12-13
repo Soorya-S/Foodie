@@ -44,7 +44,8 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_top">
+        android:layout_below="@id/toolbar_top"
+        android:layout_above="@id/grand_total_lay">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -277,6 +278,7 @@
     </ScrollView>
 
     <RelativeLayout
+        android:id="@+id/grand_total_lay"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_above="@id/pay_button"

@@ -117,6 +117,10 @@ public class MainActivity extends AppCompatActivity implements CartValueUpdater 
         });
     }
 
+
+    /*
+     * this function will retrive data from the REST API and pass it to the recycler adapter
+     */
     private void getData()
     {
 
@@ -165,6 +169,10 @@ public class MainActivity extends AppCompatActivity implements CartValueUpdater 
         }
     }
 
+
+    /*
+     * functions used for sorting the food list
+     */
     private void sortByPrice()
     {
         Collections.sort(foodList, new Comparator<FoodItem>() {
@@ -200,6 +208,10 @@ public class MainActivity extends AppCompatActivity implements CartValueUpdater 
         foodListAdapter.updateCartValues(newVal);
     }
 
+
+    /*
+     * this function updates the cart count text in the cart icon
+     */
     public void updateCartCount(int count)
     {
         if (count>=0)

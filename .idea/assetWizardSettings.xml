@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_sort_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\Soorya" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_app_icon" />
+                            <entry key="sourceFile" value="C:\Users\Soorya\Downloads\app_icon.svg" />
                           </map>
                         </option>
                       </PersistentState>

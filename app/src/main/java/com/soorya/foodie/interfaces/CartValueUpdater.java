@@ -2,8 +2,10 @@ package com.soorya.foodie.interfaces;
 
 import com.soorya.foodie.model.CartItem;
 
-import java.util.List;
 
+/*
+ * a call back interface for updating the cart values from various classes
+ */
 public interface CartValueUpdater  {
     void onCartValueChanged(CartItem cartItem);
 }

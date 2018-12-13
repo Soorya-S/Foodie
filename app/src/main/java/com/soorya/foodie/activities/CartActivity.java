@@ -144,6 +144,9 @@ public class CartActivity extends AppCompatActivity implements CartValueUpdater 
 
 
 
+    /*
+     * initialize the database and read data from the 'cartdb'.
+     */
     @SuppressLint("StaticFieldLeak")
     private void initDatabase()
     {
@@ -171,6 +174,9 @@ public class CartActivity extends AppCompatActivity implements CartValueUpdater 
         }.execute();
     }
 
+    /*
+     * this call back is called when the cart item changed in CartAdapterClass
+     */
     @Override
     public void onCartValueChanged(CartItem cartItem) {
         for (CartItem c : cartItems)
@@ -184,6 +190,9 @@ public class CartActivity extends AppCompatActivity implements CartValueUpdater 
     private float extraCharges = 15;
     private float grandTotal;
 
+    /*
+     * this function calculate the total cost, additional charges, delivery charges and grand total
+     */
     private void calculateTotalCost()
     {
         float total=0;
@@ -204,6 +213,9 @@ public class CartActivity extends AppCompatActivity implements CartValueUpdater 
         grandTotalText.setText("\u20B9" + grandTotal);
     }
 
+    /*
+     * This function will show a message when the cart is empty
+     */
     private void showCartEmptyMessage()
     {
         emptyLayout.setVisibility(View.VISIBLE);
@@ -216,6 +228,10 @@ public class CartActivity extends AppCompatActivity implements CartValueUpdater 
         });
     }
 
+
+    /*
+     * function that validate and apply promo code
+     */
     private void applyPromo(String promo)
     {
         if (promo.equalsIgnoreCase("F22LABS"))
@@ -273,6 +289,9 @@ public class CartActivity extends AppCompatActivity implements CartValueUpdater 
         }
     }
 
+    /*
+     * this function will remove the promo code from the order
+     */
     private void removePromo() {
         isPromoApplied = false;
         promoEdittext.setText("");
@@ -282,6 +301,10 @@ public class CartActivity extends AppCompatActivity implements CartValueUpdater 
         calculateTotalCost();
     }
 
+    /*
+     * this function is called when the user hit place order. So that all cart items will
+     * be erased after successful placement of order
+     */
     private void deleteAllDataFromCart()
     {
 

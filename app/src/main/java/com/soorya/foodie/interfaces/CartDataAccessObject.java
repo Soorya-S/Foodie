@@ -10,8 +10,9 @@ import com.soorya.foodie.model.CartItem;
 
 import java.util.List;
 
-import retrofit2.http.PUT;
-
+/*
+ * Database AccessObject for accessing the Room database
+ */
 @Dao
 public interface CartDataAccessObject {
 

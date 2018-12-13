@@ -4,11 +4,13 @@
     <color name="colorPrimaryDark">#009085</color>
     <color name="colorAccent">#6c009d</color>
     <color name="textForegroundWhite">#f5f5f5</color>
-    <color name="textForegroundBlack">#383838   </color>
+    <color name="textForegroundBlack">#383838</color>
     <color name="overlayBackground">#a2383838</color>
     <color name="borderGray">#bcbcbc</color>
     <color name="borderGrayLight">#e0e0e0</color>
     <color name="green">#388e3c</color>
     <color name="red">#d50000</color>
     <color name="textMateBlack">#424242</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
